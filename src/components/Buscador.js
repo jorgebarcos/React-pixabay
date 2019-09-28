@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Error from './Error';
 
 function Buscador() {
 	const [ terminoBusqueda, guardarTerminoBusqueda ] = useState('');
@@ -32,6 +33,8 @@ function Buscador() {
 					<input type="submit" className="btn btn-lg btn-danger btn-block" value="Buscar" />
 				</div>
 			</div>
+
+			{error ? <Error mensaje="Agrega un término de búsqueda" /> : null}
 		</form>
 	);
 }
