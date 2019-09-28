@@ -33,6 +33,20 @@ function App() {
 		},
 		[ busqueda ]
 	);
+
+	const paginaAnterior = () => {
+		let nuevaPaginaActual = paginaActual - 1;
+
+		// colocarlo en el state
+		guardarPaginaActual(nuevaPaginaActual);
+	};
+
+	const paginaSiguiente = () => {
+		let nuevaPaginaActual = paginaActual + 1;
+
+		// colocamos en el state
+		guardarPaginaActual(nuevaPaginaActual);
+	};
 	return (
 		<div className="app container">
 			<div className="jumbotron">
@@ -42,6 +56,18 @@ function App() {
 			</div>
 			<div className="row justify-content-center">
 				<ListadoImagenes imagenes={imagenes} />
+
+				{paginaActual === 1 ? null : (
+					<button onClick={paginaAnterior} type="button" className="btn btn-info mr-1">
+						Anterior &laquo;
+					</button>
+				)}
+
+				{paginaActual === totalPaginas ? null : (
+					<button onClick={paginaSiguiente} type="button" className="btn btn-info">
+						Siguiente &raquo;
+					</button>
+				)}
 			</div>
 		</div>
 	);
