@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Error from './Error';
 
-function Buscador() {
+function Buscador({ guardarBusqueda }) {
 	const [ terminoBusqueda, guardarTerminoBusqueda ] = useState('');
 	const [ error, guardarError ] = useState(false);
 
@@ -16,6 +16,7 @@ function Buscador() {
 		}
 		// Enviar el termino hacia el componente principal
 		guardarError(false);
+		guardarBusqueda(terminoBusqueda);
 	};
 	return (
 		<form onSubmit={buscarImagen}>
