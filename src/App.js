@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Buscador from './components/Buscador';
+import ListadoImagenes from './components/ListadoImagenes';
 
 function App() {
 	const [ busqueda, guardarBusqueda ] = useState('');
+	const [ imagenes, guardarImagenes ] = useState([]);
 
 	useEffect(
 		() => {
@@ -15,9 +17,9 @@ function App() {
 				const url = `https://pixabay.com/api/?key=${key}&q=${busqueda}&per_page=${imagenesPorPagina}`;
 
 				const respuesta = await fetch(url);
-        const resultado = await respuesta.json();
-        
-        console.log(resultado)
+				const resultado = await respuesta.json();
+
+				guardarImagenes(resultado.hits);
 			};
 			consultarApi();
 		},
@@ -30,7 +32,9 @@ function App() {
 
 				<Buscador guardarBusqueda={guardarBusqueda} />
 			</div>
-			<div className="row justify-content-center" />
+			<div className="row justify-content-center">
+				<ListadoImagenes imagenes={imagenes} />
+			</div>
 		</div>
 	);
 }
